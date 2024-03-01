@@ -5,44 +5,21 @@ import { TodoSearch } from "./components/TodoSearch";
 import { TodoList } from "./components/TodoList";
 import { TodoItem } from "./components/TodoItem";
 import { CreateTodoButton } from "./components/CreateTodoButton";
+import {useLocalStorage} from "./hooks/CustomHooks"
 
-const defaultTodos = [
-  { text: "Hacer curso React.js", completed: true },
-  { text: "Hacer curso Optimización LinkedIn", completed: true },
-  { text: "Hacer curso AWS", completed: false },
-  { text: "Hacer curso Docker", completed: false },
-  { text: "Hacer curso de creación de CV", completed: true },
-];
+// const defaultTodos = [
+//   { text: "Hacer curso React.js", completed: true },
+//   { text: "Hacer curso Optimización LinkedIn", completed: true },
+//   { text: "Hacer curso AWS", completed: false },
+//   { text: "Hacer curso Docker", completed: false },
+//   { text: "Hacer curso de creación de CV", completed: true },
+// ];
 
 // localStorage.setItem('TODOS_V1', JSON.stringify(defaultTodos));
 // localStorage.removeItem('TODOS_V1');
 
 
-/*
-* La convención para custom Hooks es que la función debe emepezar por la palabra use
-*/
-function useLocalStorage(itemName, initialValue) {
 
-  const localStorageItems = localStorage.getItem(itemName);
-
-  let parsedItem;
-
-  if (!localStorageItems) {
-    localStorage.setItem('TODOS_V1', JSON.stringify([]));
-    parsedItem = JSON.parse(localStorageItems);
-  } else {
-    parsedItem = JSON.parse(localStorageItems)
-  }
-
-    const [item, setItem] = React.useState(parsedItem);
-
-  const saveItem = (newItem) => {
-    setItem(newItem);
-    localStorage.setItem('TODOS_V1', JSON.stringify(newItem))
-  }
-
-  return [item, saveItem];
-}
 
 function App() {
 
