@@ -26,4 +26,4 @@ function useLocalStorage(itemName, initialValue) {
   return [item, saveItem];
 }
 
-export default useLocalStorage;
+export {useLocalStorage};
