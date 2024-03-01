@@ -1,4 +1,4 @@
-import "../Styles/TodoSearch.css";
+import "../styles/TodoSearch.css";
 
 import React from "react";
 
