@@ -12,21 +12,24 @@ import {useLocalStorage} from "./useLocalStorage"
 // ];
 
 // localStorage.setItem('TODOS_V1', JSON.stringify(defaultTodos));
-// localStorage.removeItem('TODOS_V1');
 
 
 
 
 function App() {
 
-  const [todos, saveTodos] = useLocalStorage('TODOS_V1', []);
+  const {
+    item: todos,
+    saveItem: saveTodos,
+    error,
+    loading
+  } = useLocalStorage('TODOS_V1', []);
   const [searchValue, setSearchValue] = React.useState("");
+  
   const completedTodos = todos.filter((todo) => !!todo.completed).length;
   const totalTodos = todos.length;
 
-
-
-  const serchedTodos = todos.filter((todo) => {
+  const searchedTodos = todos.filter((todo) => {
     const todoText = todo.text.toLowerCase();
     const searchedText = searchValue.toLowerCase();
     return todoText.includes(searchedText);
