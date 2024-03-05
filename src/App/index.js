@@ -1,6 +1,6 @@
 import React from "react";
-import {AppUI} from "./AppUI"
-import {useLocalStorage} from "./useLocalStorage"
+import { AppUI } from "./AppUI"
+import { useLocalStorage } from "./useLocalSotrage.js";
 
 // localStorage.removeItem('TODOS_V1');
 // const defaultTodos = [
@@ -14,16 +14,15 @@ import {useLocalStorage} from "./useLocalStorage"
 // localStorage.setItem('TODOS_V1', JSON.stringify(defaultTodos));
 
 
-
-
 function App() {
-
-  const {
+    const {
     item: todos,
     saveItem: saveTodos,
     error,
     loading
   } = useLocalStorage('TODOS_V1', []);
+  console.log('TODOs: ', todos)
+  
   const [searchValue, setSearchValue] = React.useState("");
   
   const completedTodos = todos.filter((todo) => !!todo.completed).length;
@@ -48,7 +47,6 @@ function App() {
     newTodos.splice(todoIndex, 1);
     saveTodos(newTodos);
   };
-
   return (
     <AppUI
       loading={loading}
@@ -57,13 +55,11 @@ function App() {
       totalTodos={totalTodos}
       searchValue={searchValue}
       setSearchValue={setSearchValue}
-      serchedTodos={searchedTodos}
-      toggleCompleteTodo={toggleCompleteTodo}
+      searchedTodos={searchedTodos}
+      completeTodo={toggleCompleteTodo}
       deleteTodo={deleteTodo}
-
     />
-  )
-  
+  );
 }
 
 export default App;
