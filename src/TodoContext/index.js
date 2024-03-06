@@ -10,7 +10,6 @@ function TodoProvider({children}) {
     error,
     loading
   } = useLocalStorage('TODOS_V1', []);
-  console.log('TODOs: ', todos)
 
   const [searchValue, setSearchValue] = React.useState("");
   
