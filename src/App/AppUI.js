@@ -8,25 +8,19 @@ import { ErrorComponent } from '../Error';
 import { EmptyTodos } from '../EmptyTodos';
 import { TodoContext } from "../TodoContext";
 
-function AppUI({
-              loading,
-            error,
-            searchedTodos,
-            toggleCompleteTodo,
-            deleteTodo
-}) {
+function AppUI() {
     return (
     <>
         <TodoCounter />
         <TodoSearch />
-        {/* <TodoContext.Consumer>
-          {(
+        <TodoContext.Consumer>
+          {({
             loading,
             error,
             searchedTodos,
             toggleCompleteTodo,
             deleteTodo
-          ) => ( */}
+          }) => (
             <TodoList>
               {loading && (
                     <>
@@ -49,8 +43,8 @@ function AppUI({
               ))}
             </TodoList>
             
-          {/* )}
-        </TodoContext.Consumer> */}
+          )}
+        </TodoContext.Consumer>
 
         <CreateTodoButton />
     </>
