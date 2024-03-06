@@ -1,6 +1,6 @@
 import React from "react";
+import { TodoProvider } from "../TodoContext";
 import { AppUI } from "./AppUI"
-import { useLocalStorage } from "./useLocalSotrage.js";
 
 // localStorage.removeItem('TODOS_V1');
 // const defaultTodos = [
@@ -15,50 +15,10 @@ import { useLocalStorage } from "./useLocalSotrage.js";
 
 
 function App() {
-    const {
-    item: todos,
-    saveItem: saveTodos,
-    error,
-    loading
-  } = useLocalStorage('TODOS_V1', []);
-  console.log('TODOs: ', todos)
-  
-  const [searchValue, setSearchValue] = React.useState("");
-  
-  const completedTodos = todos.filter((todo) => !!todo.completed).length;
-  const totalTodos = todos.length;
-
-  const searchedTodos = todos.filter((todo) => {
-    const todoText = todo.text.toLowerCase();
-    const searchedText = searchValue.toLowerCase();
-    return todoText.includes(searchedText);
-  });
-
-  const toggleCompleteTodo = (text) => {
-    const newTodos = [...todos];
-    const todoIndex = newTodos.findIndex((todo) => todo.text === text);
-    newTodos[todoIndex].completed = !newTodos[todoIndex].completed;
-    saveTodos(newTodos);
-  };
-
-  const deleteTodo = (text) => {
-    const newTodos = [...todos];
-    const todoIndex = newTodos.findIndex((todo) => todo.text === text);
-    newTodos.splice(todoIndex, 1);
-    saveTodos(newTodos);
-  };
   return (
-    <AppUI
-      loading={loading}
-      error={error}
-      completedTodos={completedTodos}
-      totalTodos={totalTodos}
-      searchValue={searchValue}
-      setSearchValue={setSearchValue}
-      searchedTodos={searchedTodos}
-      completeTodo={toggleCompleteTodo}
-      deleteTodo={deleteTodo}
-    />
+    <TodoProvider>
+      <AppUI />
+    </TodoProvider>
   );
 }
 
